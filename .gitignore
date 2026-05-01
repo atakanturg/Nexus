@@ -1,0 +1,19 @@
+# Environments
+.env
+.env.*
+
+# State
+data/state.json
+
+# Logs
+logs/*.log
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# System
+.DS_Store
