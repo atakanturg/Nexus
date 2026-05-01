@@ -1,7 +1,7 @@
 # Nexus Provisioning Engine
 
-Enterprise-grade Slack provisioning engine. Maps organizational roles to digital workspace architectures. Configuration-driven, state-aware, and idempotent.
-
+Nexus is an enterprise-grade Slack provisioning engine. Maps organizational roles to digital workspace architectures. Configuration-driven, state-aware, and idempotent.
+**GOAL** Automate the onboarding of new hires/additions into a pre-existing SLACK ecosystem. Setup once. Scale infinitely.
 ---
 
 ## 1. Slack App Configuration
@@ -53,19 +53,22 @@ TENANT_ACME_CHANNELS_ADMIN=C0XXXXXXXXX,C0YYYYYYYYY
 Note: Retrieve Channel IDs by right-clicking the channel in Slack -> View channel details -> Scroll to the bottom.
 IMPORTANT: You can add as many roles as you want with as many channels per role as you DESIRE. Format is : TENANT_ACME_CHANNELS_YourDesiredROLE=C0CHANNELID1,C0CHANNELID2, ETC
 
-4. Execution
-Execute the provisioning engine via the CLI. The engine will validate the role against .env, resolve the Slack UID via email, process channel invitations, and dispatch a welcome DM.
+## 4. Execution
 
-Bash
+Execute the provisioning engine via the CLI. The engine validates the role against `.env`, resolves the Slack UID via email, processes channel invitations, and dispatches a welcome DM.
+
+```bash
 python3 main.py --tenant ACME provision \
-  --user-id u-001 \
+  --user-id emp-8492 \
   --email user@company.com \
   --first-name Atakan \
   --last-name Turgut \
   --role admin
 
-  NOTE: Increment  '--user-id u-001 \', for your first onbaord it will be '--user-id u-001 \', the next will be ' --user-id u-002 \', etc
-5. State Management
+**NOTE**
+The --user-id must be unique per employee to maintain idempotency in the state file. Do not use manual counters (e.g., u-001, u-002) as they break at scale. Use a deterministic corporate identifier such as an HR Employee ID (emp-8492) or an email prefix (atakan.turgut)
+
+## 5. State Management
 Nexus is idempotent. It tracks successful executions in data/state.json.
 
 Duplicate Prevention: Rerunning the command for a provisioned --user-id skips the Slack API payload.
