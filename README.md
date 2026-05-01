@@ -1,6 +1,6 @@
-# Nexus Provisioning Engine
+# Primitive Onboarding Provisioning Engine
 
-Nexus is an enterprise-grade Slack provisioning engine. Configuration-driven, state-aware, and idempotent.
+Primitive Onboarding is an enterprise-grade Slack provisioning engine. Configuration-driven, state-aware, and idempotent.
 
 **GOAL:** Automate the onboarding of new hires into a pre-existing Slack ecosystem. **Setup once. Scale infinitely.**
 
@@ -32,7 +32,7 @@ You must provision a dedicated Slack App to generate security tokens.
 
 You must manually authorize the bot for every private channel defined in your configuration:
 1. Open the target private channel in the Slack client.
-2. Execute `/invite @Nexus` (or your specific bot name).
+2. Execute `/invite @Primitive Onboarding` (or your specific bot name).
 
 Failure to execute this step will result in a `channel_not_found` API error during provisioning.
 
@@ -40,7 +40,7 @@ Failure to execute this step will result in a `channel_not_found` API error duri
 
 ## 3. Environment Setup
 
-Nexus utilizes a zero-footprint configuration strategy. Organizational mapping occurs strictly within the environment file.
+Primitive Onboarding utilizes a zero-footprint configuration strategy. Organizational mapping occurs strictly within the environment file.
 Configuration uses the following **logic**: New engineers go into these channels. New consultants that work under John Doe go into these channels.
 
 1. Clone the repository.
@@ -77,7 +77,7 @@ python3 main.py --tenant ACME provision \
 The --user-id must be unique per employee to maintain idempotency in the state file. Do not use manual counters (e.g., u-001, u-002) as they break at scale. Use a deterministic corporate identifier such as an HR Employee ID (emp-8492) or an email prefix (atakan.turgut)
 
 ## 5. State Management
-Nexus is idempotent. It tracks successful executions in data/state.json.
+Primitive Onboarding is idempotent. It tracks successful executions in data/state.json.
 
 Duplicate Prevention: Rerunning the command for a provisioned --user-id skips the Slack API payload.
 
