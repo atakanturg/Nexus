@@ -56,8 +56,9 @@ Open the new .env file and replace the placeholders (XXXXXXXX or 12345678) with 
 TENANT_ACME_SLACK_BOT_TOKEN=xoxb-your-real-token-here
 TENANT_ACME_CHANNELS_ROLE=C0REALID1,C0REALID2, etc.
 ```
-Note: Retrieve Channel IDs by right-clicking the channel in Slack -> View channel details -> Scroll to the bottom.
-IMPORTANT: You can add as many roles as you want with as many channels per role as you DESIRE. Format is : TENANT_ACME_CHANNELS_YourDesiredRole=C0REALID1,C0REALID2, etc.
+**Note:** Retrieve Channel IDs by right-clicking the channel in Slack -> View channel details -> Scroll to the bottom.
+
+**IMPORTANT:** You can add as many roles as you want with as many channels per role as you DESIRE. Format is : TENANT_ACME_CHANNELS_YourDesiredRole=C0REALID1,C0REALID2, etc.
 
 ## 4. Execution
 
