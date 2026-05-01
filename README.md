@@ -1,7 +1,9 @@
 # Nexus Provisioning Engine
 
 Nexus is an enterprise-grade Slack provisioning engine. Maps organizational roles to digital workspace architectures. Configuration-driven, state-aware, and idempotent.
-**GOAL** Automate the onboarding of new hires/additions into a pre-existing SLACK ecosystem. Setup once. Scale infinitely.
+
+**GOAL:** Automate the onboarding of new hires into a pre-existing SLACK ecosystem. **Setup once. Scale infinitely.**
+
 ---
 
 ## 1. Slack App Configuration
@@ -44,6 +46,7 @@ Nexus utilizes a zero-footprint configuration strategy. Organizational mapping o
 2. Copy the template:
    ```bash
    cp .env.example .env
+   ```
 Define your credentials and channel mappings in .env:
 
 Bash
@@ -51,7 +54,7 @@ TENANT_ACME_SLACK_BOT_TOKEN=xoxb-your-token-here
 TENANT_ACME_CHANNELS_ENGINEERING=C0XXXXXXXXX, C0ZZZZZZZZZ
 TENANT_ACME_CHANNELS_ADMIN=C0XXXXXXXXX,C0YYYYYYYYY
 Note: Retrieve Channel IDs by right-clicking the channel in Slack -> View channel details -> Scroll to the bottom.
-IMPORTANT: You can add as many roles as you want with as many channels per role as you DESIRE. Format is : TENANT_ACME_CHANNELS_YourDesiredROLE=C0CHANNELID1,C0CHANNELID2, ETC
+IMPORTANT: You can add as many roles as you want with as many channels per role as you DESIRE. Format is : TENANT_ACME_CHANNELS_YourDesiredRole=C0CHANNELID1,C0CHANNELID2, ETC
 
 ## 4. Execution
 
@@ -77,5 +80,6 @@ Failure Recovery: Failed runs do not commit to state and will re-attempt on the 
 
 Force Retry: To wipe memory and force a complete re-run for all users, delete the state file:
 
-Bash
+```bash
 rm data/state.json
+```
