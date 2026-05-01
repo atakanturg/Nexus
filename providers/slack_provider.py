@@ -1,5 +1,5 @@
 """
-nexus.providers.slack_provider
+primitive_onboarding.providers.slack_provider
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Slack integration — Tier-Aware "System-Push" provisioning.
@@ -19,7 +19,7 @@ provision() implements a 4-step decision tree:
                        Return status=INVITED.  Stop here.
     • Plan error    → log "ACTION REQUIRED: Plan does not support
                        auto-invite.  Manually invite <email> then
-                       re-run Nexus."
+                       re-run Primitive Onboarding."
                        Return status=PENDING_MANUAL_INVITE.  Stop here.
     • No admin token → fall through to PENDING_MANUAL_INVITE immediately.
 
@@ -218,7 +218,7 @@ class SlackProvider(BaseProvider):
         if self._admin_client is None:
             self._log.warning(
                 "ACTION REQUIRED: No admin token configured. "
-                "Manually invite %s to the workspace then re-run Nexus.",
+                "Manually invite %s to the workspace then re-run Primitive Onboarding.",
                 user.email,
             )
             return {
@@ -250,7 +250,7 @@ class SlackProvider(BaseProvider):
             if is_plan_error:
                 self._log.warning(
                     "ACTION REQUIRED: Plan does not support auto-invite. "
-                    "Manually invite %s then re-run Nexus.",
+                    "Manually invite %s then re-run Primitive Onboarding.",
                     user.email,
                 )
                 return {
@@ -384,7 +384,7 @@ class SlackProvider(BaseProvider):
         channel_list = ", ".join(channel_ids)
 
         welcome_text = (
-            f"Hi {user.first_name}! Nexus has automatically onboarded you. "
+            f"Hi {user.first_name}! Primitive Onboarding has automatically onboarded you. "
             f"You have been added to the following channels: {channel_list}."
         )
 
@@ -399,7 +399,7 @@ class SlackProvider(BaseProvider):
     # ── Exception translation ─────────────────────────────────────────
 
     def _translate_exception(self, operation: str, exc: Exception) -> None:
-        """Map SlackApiError into the Nexus hierarchy."""
+        """Map SlackApiError into the Primitive Onboarding hierarchy."""
         if isinstance(exc, SlackApiError):
             resp = exc.response
             status = resp.status_code if hasattr(resp, "status_code") else None

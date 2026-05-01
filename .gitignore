@@ -1,6 +1,7 @@
 # Environments
 .env
 .env.*
+!.env.example
 
 # State
 data/state.json

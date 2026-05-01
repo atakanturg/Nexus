@@ -1,1 +1,1 @@
-# nexus.core – Orchestration, CLI, validation, and exception hierarchy.
+# primitive_onboarding.core – Orchestration, CLI, validation, and exception hierarchy.

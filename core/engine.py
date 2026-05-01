@@ -1,8 +1,8 @@
 """
-nexus.core.engine
+primitive_onboarding.core.engine
 ~~~~~~~~~~~~~~~~~
 
-Central orchestrator for the Nexus provisioning engine.
+Central orchestrator for the Primitive Onboarding provisioning engine.
 
 Responsibilities
 ----------------
@@ -29,7 +29,7 @@ from typing import Any
 
 from config import settings
 from core.exceptions import (
-    NexusError,
+    PrimitiveOnboardingError,
     ProviderHealthCheckError,
     StateCorruptionError,
     StateWriteError,
@@ -79,7 +79,7 @@ class StateManager:
         return {
             "_meta": {
                 "version": 1,
-                "engine": "nexus",
+                "engine": "primitive-onboarding",
                 "created_at": datetime.now(timezone.utc).isoformat(),
                 "last_modified": None,
             },
@@ -208,7 +208,7 @@ class StateManager:
 
 # ── Orchestrator ─────────────────────────────────────────────────────
 
-class NexusEngine:
+class PrimitiveOnboardingEngine:
     """Top-level orchestrator that ties providers, state, and CLI
     together.
 
@@ -353,7 +353,7 @@ class NexusEngine:
                         user_detail["providers"][pname] = "success"
                         summary["succeeded"] += 1
 
-                except NexusError as exc:
+                except PrimitiveOnboardingError as exc:
                     logger.error(
                         "Provider %s failed for user %s: %s",
                         pname,

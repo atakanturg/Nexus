@@ -1,8 +1,8 @@
 """
-nexus.core.cli
+primitive_onboarding.core.cli
 ~~~~~~~~~~~~~~
 
-Professional argparse-based CLI for the Nexus provisioning engine.
+Professional argparse-based CLI for the Primitive Onboarding provisioning engine.
 
 Usage examples::
 
@@ -35,13 +35,13 @@ logger = logging.getLogger(__name__)
 
 
 def build_parser() -> argparse.ArgumentParser:
-    """Construct the Nexus CLI argument parser."""
+    """Construct the Primitive Onboarding CLI argument parser."""
 
     parser = argparse.ArgumentParser(
-        prog="nexus",
+        prog="primitive-onboarding",
         description=(
-            "Nexus — fault-tolerant, idempotent, multi-tenant "
-            "provisioning engine."
+            "Primitive Onboarding — fault-tolerant, idempotent, multi-tenant "
+            "Slack provisioning engine."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )

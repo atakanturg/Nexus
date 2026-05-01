@@ -1,8 +1,8 @@
 """
-nexus.core.schema
+primitive_onboarding.core.schema
 ~~~~~~~~~~~~~~~~~
 
-Pydantic v2 models that gate every byte entering the Nexus engine.
+Pydantic v2 models that gate every byte entering the Primitive Onboarding engine.
 
 Design notes
 ------------

@@ -1,8 +1,8 @@
 """
-nexus.core.exceptions
-~~~~~~~~~~~~~~~~~~~~~~
+primitive_onboarding.core.exceptions
+~~~~~~~~~~~~~~~~~~~~~
 
-Hierarchical exception taxonomy for the Nexus provisioning engine.
+Hierarchical exception taxonomy for the Primitive Onboarding provisioning engine.
 
 Design notes
 ------------
@@ -20,10 +20,10 @@ from typing import Any
 
 # ── Base ─────────────────────────────────────────────────────────────
 
-class NexusError(Exception):
-    """Root exception for every error raised inside the Nexus engine."""
+class PrimitiveOnboardingError(Exception):
+    """Root exception for every error raised inside the Primitive Onboarding engine."""
 
-    code: str = "NEXUS_GENERIC"
+    code: str = "PRIMITIVE_ONBOARDING_GENERIC"
 
     def __init__(self, message: str, *, details: dict[str, Any] | None = None) -> None:
         self.details = details or {}
@@ -35,13 +35,13 @@ class NexusError(Exception):
 
 # ── Validation ───────────────────────────────────────────────────────
 
-class ValidationError(NexusError):
+class ValidationError(PrimitiveOnboardingError):
     """Input failed Pydantic / schema validation – fail fast."""
 
     code = "VALIDATION_FAILED"
 
 
-class TenantConfigError(NexusError):
+class TenantConfigError(PrimitiveOnboardingError):
     """Tenant configuration is missing or incomplete."""
 
     code = "TENANT_CONFIG_MISSING"
@@ -49,13 +49,13 @@ class TenantConfigError(NexusError):
 
 # ── State / Idempotency ─────────────────────────────────────────────
 
-class StateCorruptionError(NexusError):
+class StateCorruptionError(PrimitiveOnboardingError):
     """The local state file is unreadable or structurally invalid."""
 
     code = "STATE_CORRUPTION"
 
 
-class StateWriteError(NexusError):
+class StateWriteError(PrimitiveOnboardingError):
     """Failed to persist a state update to disk."""
 
     code = "STATE_WRITE_FAILED"
@@ -63,7 +63,7 @@ class StateWriteError(NexusError):
 
 # ── Provider hierarchy ───────────────────────────────────────────────
 
-class ProviderError(NexusError):
+class ProviderError(PrimitiveOnboardingError):
     """Any error originating from a downstream provider API call."""
 
     code = "PROVIDER_ERROR"
@@ -116,7 +116,7 @@ class ProviderConflictError(ProviderError):
 
 # ── Orchestration ────────────────────────────────────────────────────
 
-class DryRunInterrupt(NexusError):
+class DryRunInterrupt(PrimitiveOnboardingError):
     """Sentinel used internally to abort execution in dry-run mode.
 
     This is *not* an error – it's a structured halt.
@@ -125,7 +125,7 @@ class DryRunInterrupt(NexusError):
     code = "DRY_RUN_HALT"
 
 
-class ProviderHealthCheckError(NexusError):
+class ProviderHealthCheckError(PrimitiveOnboardingError):
     """One or more providers failed their pre-flight health check."""
 
     code = "HEALTH_CHECK_FAILED"

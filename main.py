@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Nexus – Main entry point (Slack-only mode).
+Primitive Onboarding – Main entry point (Slack-only mode).
 
 Wires together the CLI, settings loader, Slack provider, and the
 orchestration engine.  This file stays *thin*; all logic lives in its
@@ -16,12 +16,12 @@ from pathlib import Path
 
 from config import settings
 from core import cli
-from core.engine import NexusEngine
-from core.exceptions import NexusError
+from core.engine import PrimitiveOnboardingEngine
+from core.exceptions import PrimitiveOnboardingError
 from core.schema import ProvisionAction
 from providers.slack_provider import SlackProvider
 
-logger = logging.getLogger("nexus")
+logger = logging.getLogger("primitive-onboarding")
 
 
 # ── Logging bootstrap ────────────────────────────────────────────────
@@ -49,7 +49,7 @@ def _configure_logging(level_override: str | None = None) -> None:
     log_dir = Path("logs")
     log_dir.mkdir(exist_ok=True)
     file_handler = RotatingFileHandler(
-        log_dir / "nexus.log",
+        log_dir / "primitive-onboarding.log",
         maxBytes=50 * 1024 * 1024,  # 50 MiB
         backupCount=10,
         encoding="utf-8",
@@ -71,14 +71,14 @@ def main() -> int:
     _configure_logging(args.log_level)
 
     logger.info("═" * 60)
-    logger.info("Nexus provisioning engine starting")
+    logger.info("Primitive Onboarding provisioning engine starting")
     logger.info("Tenant: %s | Action: %s | Dry-run: %s", args.tenant, args.action, args.dry_run)
     logger.info("═" * 60)
 
     # ── Load tenant config ───────────────────────────────────────────
     try:
         tenant_config = settings.load_tenant(args.tenant)
-    except NexusError as exc:
+    except PrimitiveOnboardingError as exc:
         logger.error("Configuration error: %s", exc)
         return 1
 
@@ -106,7 +106,7 @@ def main() -> int:
 
     # ── Instantiate provider & engine ────────────────────────────────
     provider = SlackProvider(tenant_config, dry_run=args.dry_run)
-    engine = NexusEngine(tenant_config, [provider], dry_run=args.dry_run)
+    engine = PrimitiveOnboardingEngine(tenant_config, [provider], dry_run=args.dry_run)
 
     # ── Health-check-only mode ───────────────────────────────────────
     if args.action == "health":
@@ -114,7 +114,7 @@ def main() -> int:
             engine.preflight()
             logger.info("All provider health checks passed.")
             return 0
-        except NexusError as exc:
+        except PrimitiveOnboardingError as exc:
             logger.error("Health check failed: %s", exc)
             return 1
 
@@ -128,14 +128,14 @@ def main() -> int:
     if not args.dry_run and not getattr(args, "skip_health", False):
         try:
             engine.preflight()
-        except NexusError as exc:
+        except PrimitiveOnboardingError as exc:
             logger.error("Pre-flight failed: %s", exc)
             return 1
 
     # ── Execute ──────────────────────────────────────────────────────
     try:
         summary = engine.execute(users, action)
-    except NexusError as exc:
+    except PrimitiveOnboardingError as exc:
         logger.error("Engine execution failed: %s", exc)
         return 1
 

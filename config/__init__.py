@@ -1,1 +1,1 @@
-# nexus.config – Centralised settings loader and template directory.
+# primitive_onboarding.config – Centralised settings loader and template directory.

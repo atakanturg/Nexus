@@ -1,8 +1,9 @@
 """
-nexus.config.settings
+primitive_onboarding.config.settings
 ~~~~~~~~~~~~~~~~~~~~~
 
-Centralised environment loader.  All credential access flows through
+Centralised settings loader for the Primitive Onboarding engine.
+All credential access flows through
 this module—nothing else in the codebase touches ``os.environ``
 directly.
 
@@ -157,13 +158,13 @@ def load_tenant(tenant_id: str) -> TenantConfig:
 
 
 def get_state_file_path() -> Path:
-    """Resolve the state file location, respecting ``NEXUS_STATE_FILE``."""
+    """Resolve the state file location, respecting ``PRIMITIVE_ONBOARDING_STATE_FILE``."""
     _ensure_env()
-    raw = os.environ.get("NEXUS_STATE_FILE", "data/state.json")
+    raw = os.environ.get("PRIMITIVE_ONBOARDING_STATE_FILE", "data/state.json")
     return Path(raw).resolve()
 
 
 def get_log_level() -> str:
-    """Return the configured log level string (default ``INFO``)."""
+    """Resolve the log level from ``PRIMITIVE_ONBOARDING_LOG_LEVEL``, defaulting to INFO."""
     _ensure_env()
-    return os.environ.get("NEXUS_LOG_LEVEL", "INFO").upper()
+    return os.environ.get("PRIMITIVE_ONBOARDING_LOG_LEVEL", "INFO").upper()

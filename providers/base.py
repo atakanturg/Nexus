@@ -1,5 +1,5 @@
 """
-nexus.providers.base
+primitive_onboarding.providers.base
 ~~~~~~~~~~~~~~~~~~~~
 
 Abstract Base Class that every provider must implement.
@@ -12,7 +12,7 @@ Design notes
   methods the orchestrator will ever call directly.
 * ``_api_call`` is the single choke-point for every outbound HTTP
   request.  It applies tenacity retry/backoff, translates HTTP status
-  codes into the ``NexusError`` hierarchy, and hashes payloads for the
+  codes into the ``PrimitiveOnboardingError`` hierarchy, and hashes payloads for the
   debug log.  Sub-classes should **always** use it instead of raw SDK
   calls.
 """
@@ -92,7 +92,7 @@ provider_retry = retry(
 # ── Abstract base ───────────────────────────────────────────────────
 
 class BaseProvider(ABC):
-    """Contract every Nexus provider implementation must honour.
+    """Contract every Primitive Onboarding provider implementation must honour.
 
     Parameters
     ----------
@@ -215,7 +215,7 @@ class BaseProvider(ABC):
             self._translate_exception(operation, exc)
 
     def _translate_exception(self, operation: str, exc: Exception) -> None:
-        """Map SDK / HTTP exceptions into the Nexus hierarchy.
+        """Map SDK / HTTP exceptions into the Primitive Onboarding hierarchy.
 
         Sub-classes should override this for SDK-specific mappings.
         The base implementation re-raises unknown exceptions as
