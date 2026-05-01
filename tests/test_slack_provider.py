@@ -11,8 +11,8 @@ def mock_tenant_config():
         tenant_id="ACME",
         domain="acme.com",
         org_name="Acme Corp",
-        slack_enabled=True,
-        slack_bot_token="xoxb-secret-token"
+        slack_bot_token="xoxb-secret-token",
+        slack_role_channels={"engineering": ["C123"]}
     )
 
 @pytest.fixture
@@ -58,7 +58,7 @@ def test_provision_success(mock_client_cls, mock_tenant_config, mock_user):
     
     mock_client.users_lookupByEmail.assert_called_once_with(email="test@acme.com")
     mock_client.chat_postMessage.assert_called_once()
-    assert "Welcome" in mock_client.chat_postMessage.call_args[1]["text"]
+    assert "Primitive Onboarding" in mock_client.chat_postMessage.call_args[1]["text"]
 
 @patch("providers.slack_provider.WebClient")
 def test_health_check_success(mock_client_cls, mock_tenant_config):
