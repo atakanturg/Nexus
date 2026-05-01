@@ -49,12 +49,15 @@ Nexus utilizes a zero-footprint configuration strategy. Organizational mapping o
    ```
 Define your credentials and channel mappings in .env:
 
-Bash
-TENANT_ACME_SLACK_BOT_TOKEN=xoxb-your-token-here
-TENANT_ACME_CHANNELS_ENGINEERING=C0XXXXXXXXX, C0ZZZZZZZZZ
-TENANT_ACME_CHANNELS_ADMIN=C0XXXXXXXXX,C0YYYYYYYYY
+3. Configure your credentials:
+Open the new .env file and replace the placeholders (XXXXXXXX or 12345678) with your real data. The engine will not function with the default placeholder values.
+
+```Bash
+TENANT_ACME_SLACK_BOT_TOKEN=xoxb-your-real-token-here
+TENANT_ACME_CHANNELS_ROLE=C0REALID1,C0REALID2, etc.
+```
 Note: Retrieve Channel IDs by right-clicking the channel in Slack -> View channel details -> Scroll to the bottom.
-IMPORTANT: You can add as many roles as you want with as many channels per role as you DESIRE. Format is : TENANT_ACME_CHANNELS_YourDesiredRole=C0CHANNELID1,C0CHANNELID2, ETC
+IMPORTANT: You can add as many roles as you want with as many channels per role as you DESIRE. Format is : TENANT_ACME_CHANNELS_YourDesiredRole=C0REALID1,C0REALID2, etc.
 
 ## 4. Execution
 
