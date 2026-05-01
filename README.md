@@ -64,7 +64,7 @@ python3 main.py --tenant ACME provision \
   --first-name Atakan \
   --last-name Turgut \
   --role admin
-
+```
 **NOTE**
 The --user-id must be unique per employee to maintain idempotency in the state file. Do not use manual counters (e.g., u-001, u-002) as they break at scale. Use a deterministic corporate identifier such as an HR Employee ID (emp-8492) or an email prefix (atakan.turgut)
 
