@@ -41,6 +41,7 @@ Failure to execute this step will result in a `channel_not_found` API error duri
 ## 3. Environment Setup
 
 Nexus utilizes a zero-footprint configuration strategy. Organizational mapping occurs strictly within the environment file.
+Configuration uses the following **logic**: New engineers go into these channels. New consultants that work under John Doe go into these channels.
 
 1. Clone the repository.
 2. Copy the template:
