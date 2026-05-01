@@ -1,8 +1,8 @@
 # Nexus Provisioning Engine
 
-Nexus is an enterprise-grade Slack provisioning engine. Maps organizational roles to digital workspace architectures. Configuration-driven, state-aware, and idempotent.
+Nexus is an enterprise-grade Slack provisioning engine. Configuration-driven, state-aware, and idempotent.
 
-**GOAL:** Automate the onboarding of new hires into a pre-existing SLACK ecosystem. **Setup once. Scale infinitely.**
+**GOAL:** Automate the onboarding of new hires into a pre-existing Slack ecosystem. **Setup once. Scale infinitely.**
 
 ---
 
