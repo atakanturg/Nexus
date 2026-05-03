@@ -1,9 +1,8 @@
 # Primitive Onboarding Provisioning Engine
 
-Primitive Onboarding is an enterprise-grade Slack provisioning engine. Configuration-driven, state-aware, and idempotent.
+Primitive Onboarding is an enterprise-grade Slack provisioning engine.
 
-**GOAL:** Automate the onboarding of new hires into a pre-existing Slack ecosystem. **Setup once. Scale infinitely.**
-
+**Functionality:** Automate the onboarding of new hires into a pre-existing Slack ecosystem.
 ---
 
 ## 1. Slack App Configuration
